@@ -1,0 +1,97 @@
+.t-card {
+  position: relative;
+
+  .title {
+    text-align: left;
+    margin: 30px auto;
+
+    h3 {
+      display: inline;
+    }
+
+    span {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+  }
+
+  .content {
+    background-color: $card-background-color;
+    border-top: green 3px solid;
+    border-radius: 6px;
+    padding: 30px 20px 20px;
+    margin-bottom: 40px;
+    height: 100%;
+    overflow: hidden;
+
+    .a-card {
+      margin: auto 1.6%;
+      border-radius: 10px;
+      background: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      -webkit-transition: all 0.4s;
+      text-align: left;
+      float: left;
+
+      .cover {
+        line-height: 220px;
+        // margin: 15px;
+        margin-bottom: 10px;
+        display: block;
+        cursor: pointer;
+
+        .coverImg {
+          width: 100%;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      .card-title {
+        display: inline-block;
+        padding-left: 10px;
+        font-size: 12px;
+
+        span {
+          color: #2f4056;
+        }
+      }
+
+      .card-watch {
+        display: inline-block;
+        float: right;
+        padding-right: 10px;
+        font-size: 12px;
+        margin-top: 5px;
+
+        span {
+          color: #777;
+        }
+      }
+
+      .card-like {
+        display: inline-block;
+        float: right;
+        padding-right: 10px;
+        font-size: 12px;
+        margin-top: 5px;
+
+        span {
+          color: #777;
+        }
+      }
+    }
+
+    .a-card:hover {
+      -webkit-transform: translateY(-2%);
+      transform: translateY(-2%);
+      box-shadow: 1px 4px 10px 2px #ccc;
+      -webkit-box-shadow: 1px 4px 10px 2px #ccc;
+      -moz-box-shadow: 1px 4px 10px 2px #ccc;
+    }
+  }
+}

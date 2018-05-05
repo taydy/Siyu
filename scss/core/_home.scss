@@ -1,0 +1,46 @@
+#home {
+    position: relative;
+    margin-top: 100px;
+    padding: 40px 200px;
+    min-width: 1000px;
+
+    section {
+        margin: 40px auto;
+    }
+
+    .welcome {
+        
+        img {
+            width: 100%;
+        }
+
+        .saying {
+            padding: 50px 0;
+
+        }
+    }
+
+    .serverless {
+        margin-top: 80px;
+
+        .serverless-info {
+            margin: 0px auto;
+
+            .product {
+                margin: 15px auto;
+
+                .append-list {
+                    display: inline-block;
+                    list-style: decimal !important;
+                    padding: 0;
+                    font-size: 14px;
+                    position: relative;
+                    color: #a9b0b4;
+                }
+            }
+        }
+        img {
+            width: 100px;
+        }
+    }
+}

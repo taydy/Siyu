@@ -1,0 +1,50 @@
+.ip {
+  position: relative;
+
+  .parameter {
+    background-color: $card-background-color;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 6px 0 rgba(117, 117, 117, 0.25);
+    box-shadow: 0 1px 6px 0 rgba(117, 117, 117, 0.25);
+
+    .search {
+      display: inline-block;
+      width: 100%;
+      margin: 40px auto;
+
+      .el-input--prefix .el-input__inner {
+        padding-left: 30px;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+
+  .result {
+    color: $title-color;
+    text-align: left;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: $card-background-color;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 6px 0 rgba(117, 117, 117, 0.25);
+    box-shadow: 0 1px 6px 0 rgba(117, 117, 117, 0.25);
+
+    a {
+      margin-left: 10px;
+    }
+
+    .show-result {
+      margin: 10px;
+
+      .el-table th,
+      .el-table tr {
+        background-color: $card-background-color;
+      }
+
+      .el-table,
+      .el-table__expanded-cell {
+        background-color: $card-background-color;
+      }
+    }
+  }
+}

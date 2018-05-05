@@ -1,0 +1,56 @@
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus {
+  border-color: $default-yellow-color;
+  outline: 0;
+}
+
+::selection {
+    background: $default-yellow-color;
+    color: $selection-color;
+}
+
+::-moz-selection {
+    background: $default-yellow-color;
+    color: $selection-color;
+}
+
+::-webkit-selection {
+  background: $default-yellow-color;
+  color: $selection-color;
+}
+
+
+h3 {
+  font-size: 40px;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+}
+
+h4 {
+  font-size: 34px;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+}
+
+h5 {
+  font-size: 24px;
+  font-weight: 200;
+  margin: 10px auto;
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px auto;
+}
+
+a {
+  font-size: 16px;
+  font-weight: 300;
+  color: $a-color;
+}
+
+ol, ul {
+  list-style: none;
+  padding: 0;
+}

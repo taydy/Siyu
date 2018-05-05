@@ -1,0 +1,25 @@
+#tools {
+    position: relative;
+    margin: 120px 50px 0;
+
+    .card {
+        background: $sidebar-background-color;
+        border-radius: 5px;
+        padding: 20px 0;
+
+        .title {
+            font-size: 24px;
+            color: white !important;
+        }
+    }
+
+    .input {
+        position: relative;
+        width: 100%;
+        padding: 30px 10px;
+        border-radius: 5px;
+        border-top: green solid 3px;
+        margin: 30px auto;
+        background-color: $card-background-color;
+    }
+}
