@@ -3,11 +3,12 @@
     <div class="parameter" v-loading="loading" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0,0,0,.5)">
       <el-row>
         <el-col :span="12" :offset="6">
-          <div class="search" @keyup.enter="parseIp" >
+          <div class="search" @keyup.enter="parseIp">
             <!-- <a>IP 查询</a> -->
-            <el-form :model="search" status-icon :rules="rules" ref="search" label-width="100px" label-position="right" class="demo-ruleForm">
+            <el-form :model="search" status-icon :rules="rules" ref="search" label-width="100px" label-position="right" class="demo-ruleForm" >
               <el-form-item label="IP 地址" prop="ip">
-                <el-input id="ip" v-model="search.ip" prefix-icon="el-icon-search" placeholder="请输入 IP 地址" ></el-input>
+                <el-input id="ip" v-model="search.ip" prefix-icon="el-icon-search" placeholder="请输入 IP 地址，按回车键"></el-input>
+                <el-input v-show="false"></el-input>
               </el-form-item>
             </el-form>
           </div>

@@ -1,11 +1,11 @@
 #home {
     position: relative;
     margin-top: 100px;
-    padding: 40px 200px;
     min-width: 1000px;
 
     section {
-        margin: 40px auto;
+        margin: 50px auto;
+        padding: 40px 150px;
     }
 
     .welcome {
@@ -20,11 +20,37 @@
         }
     }
 
+    .explained {
+        padding: 50px 150px;
+        background-color: #f8fafa;
+        position: relative;
+
+        .info {
+            padding-top: 10%;
+            h6 {
+                color: #666;
+                line-height: 2.0em;
+                font-weight: 400;
+                font-family: $default-font-family;
+                text-align: left;
+                text-indent: 33px;
+            }
+
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
     .serverless {
         margin-top: 80px;
 
         .serverless-info {
             margin: 0px auto;
+            padding: 20px 0;
+            box-shadow: 0 8px 25px 0 rgba(155,155,155,.15);
+            border-radius: 2px;
 
             .product {
                 margin: 15px auto;

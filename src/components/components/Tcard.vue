@@ -1,14 +1,10 @@
 <template>
   <div class="t-card">
-    <div class="title">
-      <h3>{{title}}</h3>
-      <span>{{subTitle}}</span>
-    </div>
     <div class="content">
       <el-row :gutter="20">
         <el-col :span="6" v-for="(item, index) in data" :key="index">
-          <div class="a-card hidden" >
-            <router-link :to="item.url" class="cover" target="_blank">
+          <div class="a-card hidden">
+            <router-link :to="item.url" class="cover">
               <img class="coverImg" :src="item.img">
             </router-link>
             <div class="card-title">
@@ -40,14 +36,6 @@
 export default {
   name: 'Tcard',
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-    subTitle: {
-      type: String,
-      required: false
-    },
     data: {
       type: Array,
       required: true,

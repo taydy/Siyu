@@ -12,6 +12,20 @@
                 </el-col>
             </el-row>
         </section>
+        <section class="explained">
+            <el-row :gutter="20">
+                <el-col :span="10" :offset="1">
+                    <div class="info">
+                    <h1 style="text-align:left;font-size:50px;margin:0;">”</h1>
+                    <h6>无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。</h6>
+                    <h1 style="text-align:right;font-size:50px;margin:5px 0 0;">”</h1>
+                    </div>
+                </el-col>
+                <el-col :span="10" :offset="2">
+                    <img src="/static/img/serverless.png">
+                </el-col>
+            </el-row>
+        </section>
         <section class="serverless">
             <el-row :gutter="20">
                 <el-col :span="10" :offset="7">
@@ -91,8 +105,7 @@
 export default {
   name: 'Home',
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>

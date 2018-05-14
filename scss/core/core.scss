@@ -4,11 +4,14 @@
 
 // Components
 @import 'header';
+@import 'footer';
 @import 'search';
 @import 'tcard';
+@import 'container';
 
 // Pages
 @import 'home';
 @import 'blogs';
 @import 'tools';
-@import 'ip'
+@import 'ip';
+@import 'json';

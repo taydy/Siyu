@@ -1,6 +1,7 @@
 #tools {
     position: relative;
-    margin: 120px 50px 0;
+    margin: 80px 50px 0;
+    padding: 20px 150px;
 
     .card {
         background: $sidebar-background-color;
@@ -13,13 +14,10 @@
         }
     }
 
-    .input {
-        position: relative;
-        width: 100%;
-        padding: 30px 10px;
-        border-radius: 5px;
+    #use {
+        padding:5px 20px 20px;
         border-top: green solid 3px;
-        margin: 30px auto;
-        background-color: $card-background-color;
+        box-shadow: 0 8px 25px 0 rgba(155,155,155,.15);
+        border-radius: 5px;
     }
 }

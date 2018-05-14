@@ -4,7 +4,19 @@ import Vue from 'vue'
 import router from './router'
 import vueResource from 'vue-resource'
 import animate from 'animate.css'
-import { Row, Col, Input, Table, TableColumn, Form, FormItem, Loading } from 'element-ui'
+import {
+  Row,
+  Col,
+  Input,
+  Table,
+  TableColumn,
+  Form,
+  FormItem,
+  Loading,
+  Select,
+  Option,
+  Button
+} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from './http'
 import App from './App'
@@ -20,6 +32,9 @@ Vue.use(TableColumn)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Loading.directive)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Button)
 
 Vue.prototype.$loading = Loading.service
 Vue.prototype.axios = axios
@@ -29,6 +44,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

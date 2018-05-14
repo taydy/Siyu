@@ -10,7 +10,7 @@ header {
     margin: 0 20px;
     position: relative;
     padding: 5px 0;
-    min-width: 1000px;
+    min-width: 1100px;
 
     .inner {
       display: -webkit-box;
@@ -18,11 +18,11 @@ header {
       padding: 20px 200px;
 
       #logo-wrap {
-        -webkit-box-flex: 1;
-        -moz-box-flex: 1;
-        -webkit-flex: 0 50px;
-        -ms-flex: 0 50px;
-        flex: 0 50px;
+        // -webkit-box-flex: 1;
+        // -moz-box-flex: 1;
+        // -webkit-flex: 0 50px;
+        // -ms-flex: 0 50px;
+        // flex: 0 50px;
 
         a {
           color: $title-color;
@@ -38,8 +38,7 @@ header {
 
       #main-nav {
         display: block;
-        padding-left: 20px;
-        float: right;
+        padding-left: 60%;
         // margin-right: 50px;
 
         .main-nav-link {

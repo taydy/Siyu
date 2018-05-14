@@ -1,0 +1,20 @@
+footer {
+    position: relative;
+
+    #footer {
+        padding: 40px 0;
+        min-width: 1000px;
+        margin: 10px auto 0;
+        background-color: #f8fafa;
+
+        .desc {
+            display: block;
+        }
+
+        .copyright {
+            display: block;
+            margin-top: 10px;
+            font-family: 'Noto Sans', sans-serif;
+        }
+    }
+}

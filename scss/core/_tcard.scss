@@ -1,28 +1,16 @@
 .t-card {
-  position: relative;
-
-  .title {
-    text-align: left;
-    margin: 30px auto;
-
-    h3 {
-      display: inline;
-    }
-
-    span {
-      margin-left: 20px;
-      font-size: 14px;
-    }
-  }
-
   .content {
     background-color: $card-background-color;
-    border-top: green 3px solid;
+    border-top: $default-yellow-color 3px solid;
     border-radius: 6px;
     padding: 30px 20px 20px;
     margin-bottom: 40px;
     height: 100%;
     overflow: hidden;
+
+    .hidden {
+      display: none !important;
+    }
 
     .a-card {
       margin: auto 1.6%;
