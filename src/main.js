@@ -2,48 +2,42 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from './router'
+import store from './store'
 import vueResource from 'vue-resource'
-import animate from 'animate.css'
-import {
-  Row,
-  Col,
-  Input,
-  Table,
-  TableColumn,
-  Form,
-  FormItem,
-  Loading,
-  Select,
-  Option,
-  Button
-} from 'element-ui'
+import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import animate from 'animate.css'
+import EffectInput from 'effect-input'
+import 'effect-input/dist/index.css'
+import YoyaLoading from '@/assets/js/yoyaLoading'
+import moment from 'vue-moment'
+
+import CommonUtil from '@/assets/js/common'
+import underscore from 'underscore'
+
 import axios from './http'
 import App from './App'
 
 Vue.use(vueResource)
 Vue.use(animate)
 
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Input)
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(Form)
-Vue.use(FormItem)
-Vue.use(Loading.directive)
-Vue.use(Select)
-Vue.use(Option)
-Vue.use(Button)
+Vue.use(ElementUI)
 
-Vue.prototype.$loading = Loading.service
 Vue.prototype.axios = axios
 Vue.config.productionTip = false
+
+Vue.use(EffectInput)
+Vue.prototype.yoyaLoading = YoyaLoading
+
+Vue.use(moment)
+Vue.prototype.commonUtil = CommonUtil
+Vue.prototype.underscore = underscore
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

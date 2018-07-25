@@ -89,7 +89,7 @@ export default {
           this.loading = true
 
           this.axios
-            .get('/tools/ip-parse', {
+            .get('https://api.siluyunyu.com/tools/ip-parse', {
               params: {
                 ip: this.search.ip
               }

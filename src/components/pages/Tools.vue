@@ -47,7 +47,7 @@ export default {
             url: '/tools/ip',
             watch: 1800,
             zan: 300
-          },
+          }
           // {
           //   img: '/static/img/dedicated-ip_1x.png',
           //   icon: '#icon-dizhi',
@@ -56,14 +56,14 @@ export default {
           //   watch: 1800,
           //   zan: 300
           // },
-          {
-            img: '/static/img/elmjson.png',
-            icon: '#icon-jsongeshihua',
-            title: 'JSON 格式化',
-            url: '/tools/json',
-            watch: 1800,
-            zan: 300
-          },
+          // {
+          //   img: '/static/img/elmjson.png',
+          //   icon: '#icon-jsongeshihua',
+          //   title: 'JSON 格式化',
+          //   url: '/tools/json',
+          //   watch: 1800,
+          //   zan: 300
+          // },
           // {
           //   img: '/static/img/base64.jpg',
           //   icon: '#icon-bianma',
@@ -72,22 +72,22 @@ export default {
           //   watch: 1800,
           //   zan: 300
           // },
-          {
-            img: '/static/img/itsnottoolate.gif',
-            icon: '#icon-icon_time',
-            title: '时间戳转换',
-            url: '#',
-            watch: 1800,
-            zan: 300
-          },
-          {
-            img: '/static/img/businessman.jpg',
-            icon: '#icon-zhengzeshi',
-            title: '正则表达式测验',
-            url: '#',
-            watch: 1800,
-            zan: 300
-          }
+          // {
+          //   img: '/static/img/itsnottoolate.gif',
+          //   icon: '#icon-icon_time',
+          //   title: '时间戳转换',
+          //   url: '#',
+          //   watch: 1800,
+          //   zan: 300
+          // },
+          // {
+          //   img: '/static/img/businessman.jpg',
+          //   icon: '#icon-zhengzeshi',
+          //   title: '正则表达式测验',
+          //   url: '#',
+          //   watch: 1800,
+          //   zan: 300
+          // }
         ]
       }
     }

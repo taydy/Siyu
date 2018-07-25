@@ -12,13 +12,14 @@ export default {
 
 <style>
 #app {
-  font-family: 'Noto Sans', 'Abel', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  color: #34495e;
   text-align: center;
   min-width: 1000px;
-  /* margin-top: 20px; */
+  margin-top: 20px;
 }
 .icon {
   width: 1em;

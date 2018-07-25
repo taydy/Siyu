@@ -19,6 +19,8 @@ module.exports = {
   plugins: ['vue'],
   // add your custom rules here
   rules: {
+    // Use // eslint-disable-next-line to ignore the next line.
+    // Use /* eslint-disable */ to ignore all warnings in a file.
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
@@ -31,6 +33,7 @@ module.exports = {
         named: 'ignore',
         asyncArrow: 'ignore'
       }
-    ]
+    ],
+    "no-restricted-syntax": 'off'
   }
 }

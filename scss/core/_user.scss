@@ -1,0 +1,30 @@
+// user index
+.user-home {
+    position: relative;
+    text-align: left;
+    z-index: 0;
+
+    .user-menu {
+        position: fixed;
+        width: 150px;
+    }
+
+    .user-article {
+        .search-from {
+            padding-left: 40px;
+        }
+    }
+
+    .user-category {
+        .search-from {
+            padding-left: 40px;
+        }
+    }
+
+    .user-draft {
+        .search-from {
+            padding-left: 40px;
+        }
+    }
+
+}

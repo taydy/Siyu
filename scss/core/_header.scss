@@ -1,21 +1,22 @@
 header {
-    width: 100%;
     height: 100px;
     position: fixed;
+    z-index: 1;
     top: 0px;
     background-color: white;
-    z-index: 1;
+    width: 100%;
+    min-width: 1100px;
 
   .header {
-    margin: 0 20px;
+    // margin: 0 20px;
     position: relative;
     padding: 5px 0;
-    min-width: 1100px;
+    // min-width: 1100px;
 
     .inner {
       display: -webkit-box;
       align-items: center;
-      padding: 20px 200px;
+      padding: 20px 0;
 
       #logo-wrap {
         // -webkit-box-flex: 1;
@@ -28,9 +29,16 @@ header {
           color: $title-color;
 
           img {
-            width: 80px;
-            // height: 180px;
+            width: 120px;
             display: block;
+            margin: 20px 0 0 0;
+            position: absolute;
+          }
+
+          span {
+            // margin-left: 10px;
+            font: normal normal normal 30px/1.4em sacramento,cursive;
+            font-family: 'Sacramento', cursive;
             float: left;
           }
         }
@@ -38,14 +46,19 @@ header {
 
       #main-nav {
         display: block;
-        padding-left: 60%;
+        /* padding-left: 60%; */
+        float: right;
+        position: absolute;
+        right: 0;
+        // font-family: 'Abel', sans-serif;
+        // font-size: normal normal normal 44px/1.4em pompiere;
         // margin-right: 50px;
 
         .main-nav-link {
           color: $title-color;
-          font-size: 16px;
-          font-weight: 500;
           cursor: pointer;
+          font-size: 16px;
+          font-weight: 400;
           text-decoration: none;
           line-height: 50px;
           opacity: 0.7;
@@ -59,9 +72,196 @@ header {
 
         .main-nav-link:hover {
             // opacity: 1;
-          color: white;
-          background-color: $default-yellow-color !important;
-          border-radius: 10px;
+          // color: white;
+          border-bottom: 2px solid $nav-hover-color;
+          // background-color: $default-yellow-color !important;
+        }
+
+        .login {
+          color: $title-color;
+          font-size: 16px;
+          font-weight: 400;
+          opacity: 0.7;
+          cursor: pointer;
+        }
+        .user-menu {
+          display: inline;
+          z-index: 99999;
+
+          .nav-user-title {
+            img {
+              width: 40px;
+              border-radius: 50%;
+              vertical-align: middle;
+            }
+  
+            .login-nickname {
+              display: inline-block;
+              padding-right: 15px;
+              zoom: 1;
+              max-width: 10em;
+              overflow: hidden;
+              vertical-align: middle;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              word-wrap: normal;
+              color: #666;
+              font-size: 16px;
+              font-weight: 400;
+              text-decoration: none;
+              line-height: 50px;
+              opacity: 0.7;
+              -webkit-transition: 0.2s;
+              transition: 0.2s;
+            }
+            
+            i {
+              background-image: url(/static/img/header_icon.png);
+              background-position: -11px -32px;
+              position: absolute;
+              top: 25px;
+              right: 0;
+              width: 9px;
+              height: 5px;
+              overflow: hidden;
+              transition: .5s transform;
+              background-repeat: no-repeat;
+            }
+          }
+
+          .nav-expand-list {
+            display: none;
+            right: 0;
+            left: auto;
+            padding: 0;
+            min-width: 120px;
+            top: 50px;
+            position: absolute;
+            z-index: 99;
+            padding: 0 8px 10px;
+            background-color: #fff;
+            border-top: 2px solid $nav-hover-color;
+            box-shadow: 0 3px 8px 2px rgba(1,1,1,.25);
+            border-radius: 0 0 5px 5px;
+            transform-origin: 80% 0;
+            animation: scale-in-ease cubic-bezier(0.22,.58,.12,.98) .5s;
+
+            .arrow {
+              left: auto;
+              right: 50px;
+              background-image: url(/static/img/header_icon.png);
+              background-position: -6px -20px;
+              position: absolute;
+              top: -7px;
+              left: 80%;
+              width: 14px;
+              height: 7px;
+              margin-left: -7px;
+              background-repeat: no-repeat;
+            }
+
+            .user-card {
+              width: 340px;
+
+              .btn-exit {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                vertical-align: top;
+                color: #666;
+
+                i {
+                  vertical-align: top;
+                  margin: 2px 5px 0 0;
+                }
+
+                .nav-exit-icon {
+                  background-image: url(/static/img/header_icon.png);
+                  background-position: -3px -373px;
+                  width: 17px;
+                  height: 15px;
+                  display: inline-block;
+                  zoom: 1;
+                  background-repeat: no-repeat;
+                }
+
+                span {
+                  display: inline-block;
+                  vertical-align: top;
+                }
+              }
+
+              .u-info {
+                .avatar {
+                  display: block;
+                  position: relative;
+                  width: 100px;
+                  height: 100px;
+                  margin: 0 auto;
+
+                  img {
+                    width: 100%;
+                    border-radius: 50%;
+                  }
+                }
+
+                .nickname {
+                  text-align: center;
+                  margin-top: 5px;
+                  font-size: 14px;
+                  color: #555;
+                }
+              }
+
+              .motto {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                color: #336699;
+                font-size: 12px;
+              }
+
+              .menu {
+                margin: 20px auto;
+
+                a {
+                  color: #34495e;
+                  font-weight: 400;
+                  margin: 0 10px;
+                  -webkit-transition: 0.2s;
+                  -moz-transition: 0.2s;
+                  -ms-transition: 0.2s;
+                  transition: 0.2s;
+
+                  i {
+                    margin-right: 5px;
+                  }
+                }
+
+                a:hover {
+                  color: $nav-hover-color;
+                }
+              }
+            }
+          }
+        }
+
+        .user-menu:hover {
+          .nav-user-title {
+            .login-nickname {
+              color: $nav-hover-color
+            }
+  
+            i {
+              background-position: -11px -42px;
+              transform: rotate(180deg);
+              background-repeat: no-repeat;
+            }
+          }
+
+          .nav-expand-list {
+            display: block;
+          }
         }
       }
     }

@@ -1,20 +1,24 @@
 export default {
   nav: [
     {
-      name: '首页',
+      name: 'Home',
       url: '/home'
     },
     {
-      name: '博客',
+      name: 'Blog',
       url: '/blogs'
     },
+    // {
+    //   name: 'Movie',
+    //   url: '/movies'
+    // },
     {
-      name: '工具',
+      name: 'Tool',
       url: '/tools'
-    },
-    {
-      name: '关于我',
-      url: '/about'
     }
+    // {
+    //   name: 'About',
+    //   url: '/about'
+    // }
   ]
 }

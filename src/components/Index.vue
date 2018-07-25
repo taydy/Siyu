@@ -1,9 +1,15 @@
 <template>
   <div class="index">
-    <Header :navItems="nav"/>
-     <div class="main">
-      <router-view />
-    </div>
+    <Header :navItems="nav" />
+    <el-row>
+      <el-col :span="20" :offset="2">
+        <div class="main">
+          <transition name="slide-fade" mode="out-in">
+            <router-view />
+          </transition>
+        </div>
+      </el-col>
+    </el-row>
     <Footer />
   </div>
 </template>

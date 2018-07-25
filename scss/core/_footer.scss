@@ -1,20 +1,27 @@
 footer {
-    position: relative;
+    // position: relative;
 
     #footer {
         padding: 40px 0;
         min-width: 1000px;
         margin: 10px auto 0;
-        background-color: #f8fafa;
+        // background-color: #f8fafa;
 
         .desc {
             display: block;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: Abel, sans-serif;
+            color: rgba(63,31,97,.5);
         }
 
         .copyright {
             display: block;
             margin-top: 10px;
-            font-family: 'Noto Sans', sans-serif;
+            font-family: Abel, sans-serif;
+            color: rgba(63,31,97,.5);
+            font-size: 14px;
+            font-weight: 500;
         }
     }
 }
