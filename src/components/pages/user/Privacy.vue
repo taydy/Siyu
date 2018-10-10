@@ -80,6 +80,7 @@ export default {
       this.privacy = {}
     },
     updatePaasword() {
+      this.amplitude.getInstance().logEvent('Updated Password')
       userApi
         .updatePassword(
           {

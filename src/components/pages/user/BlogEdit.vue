@@ -114,6 +114,7 @@ export default {
     // })
     this.loadArticle()
     this.loadCategorys()
+    this.amplitude.getInstance().logEvent('Edited Blog')
   },
   watch: {
     $route: this.loadArticle,
@@ -222,7 +223,7 @@ export default {
     },
     loadCategorys() {
       articleApi
-        .getAuthArticleCategory(this.page, this.limit)
+        .getAuthArticleCategory(1, 100)
         .then(response => {
           this.categorys = response.data.datas
         })

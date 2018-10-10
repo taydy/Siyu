@@ -14,6 +14,7 @@ import moment from 'vue-moment'
 
 import CommonUtil from '@/assets/js/common'
 import underscore from 'underscore'
+import amplitude from 'amplitude-js'
 
 import axios from './http'
 import App from './App'
@@ -30,6 +31,9 @@ Vue.use(EffectInput)
 Vue.prototype.yoyaLoading = YoyaLoading
 
 Vue.use(moment)
+Vue.use(amplitude)
+amplitude.getInstance().init('b9a94813e48465833715f7e380dd0c62')
+Vue.prototype.amplitude = amplitude
 Vue.prototype.commonUtil = CommonUtil
 Vue.prototype.underscore = underscore
 

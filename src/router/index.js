@@ -4,11 +4,12 @@ import store from '../store/index'
 import {
   userApi
 } from '@/api/api'
+import amplitude from 'amplitude-js'
 import Common from '@/assets/js/common'
 
 import Index from '@/components/Index'
 import Home from '@/components/pages/Home'
-import Tools from '@/components/pages/Tools'
+import Tools from '@/components/pages/tool/Tools'
 
 // blog
 import BlogIndex from '@/components/pages/blog/Index'
@@ -18,8 +19,8 @@ import MyBlogList from '@/components/pages/blog/MyBlogList'
 import MyBlog from '@/components/pages/blog/MyBlog'
 
 // Tools
-import Ip from '@/components/tools/Ip'
-import Json from '@/components/tools/Json'
+import Ip from '@/components/pages/tool/Ip'
+import Json from '@/components/pages/tool/Json'
 
 // User
 import UserIndex from '@/components/pages/user/Index'
@@ -29,6 +30,9 @@ import UserCategory from '@/components/pages/user/Category'
 import UserDraftbox from '@/components/pages/user/Draftbox'
 import UserPrivacy from '@/components/pages/user/Privacy'
 import UserInfo from '@/components/pages/user/UserInfo'
+
+// chat
+import Chat from '@/components/pages/chat/Chat'
 
 Vue.use(Router)
 
@@ -41,6 +45,13 @@ const routes = [{
     path: 'home',
     name: 'Home',
     component: Home
+  }, {
+    path: 'chat',
+    name: 'chat',
+    component: Chat,
+    meta: {
+      requireAuth: true
+    }
   }, {
     path: 'tools',
     name: 'Tools',
@@ -69,6 +80,9 @@ const routes = [{
   }, {
     path: 'my/blogs',
     component: BlogIndex,
+    meta: {
+      requireAuth: true
+    },
     children: [{
       path: '',
       name: 'MyBlogList',
@@ -172,6 +186,8 @@ router.afterEach((to, from) => {
       store.dispatch('auth/setAvatar', data.avatar)
       store.dispatch('auth/setUserId', data.id)
       store.dispatch('auth/setMotto', data.motto)
+      amplitude.getInstance().setUserId(data.id)
+      console.log(amplitude)
     })
   }
   if (!localStorage.token) {

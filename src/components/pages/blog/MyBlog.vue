@@ -44,10 +44,14 @@ export default {
     this.id = this.$route.params.id
     this.loadArticle(loading)
     this.loadComment()
+    this.amplitude.getInstance().logEvent('Viewed Blog Page')
   },
   methods: {
     loadArticle(loading) {
       articleApi.getAuthArticlesByPid(this.id).then(response => {
+        if (loading) {
+          loading.close()
+        }
         this.article = response.data
         let html = mavonEditor.mixins[0]
           .data()
@@ -69,9 +73,6 @@ export default {
           }
         }
         this.markdownHtml = objE.outerHTML
-        if (loading) {
-          loading.close()
-        }
         this.$nextTick(function() {
           let nodes = document.getElementsByTagName('pre')
           nodes.forEach = Array.prototype.forEach

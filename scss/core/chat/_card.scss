@@ -1,0 +1,26 @@
+.chat-card {
+  margin-top: 10px;
+  padding: 12px;
+
+  .chat-card-header {
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 20px 0;
+        cursor: pointer;
+        border-bottom: 1px solid #292c33;
+      }
+    }
+
+    .chat-avatar {
+      vertical-align: middle;
+    }
+
+    .chat-avatar {
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -97,6 +97,9 @@ export default {
       return this.$route.path
     }
   },
+  mounted: function() {
+    this.amplitude.getInstance().logEvent('Viewed Tool Page')
+  },
   watch: {
     path: function(oldPath, newPath) {
       if (this.isUseShow()) {

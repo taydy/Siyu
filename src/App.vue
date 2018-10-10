@@ -19,7 +19,6 @@ export default {
   color: #34495e;
   text-align: center;
   min-width: 1000px;
-  margin-top: 20px;
 }
 .icon {
   width: 1em;

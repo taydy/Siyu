@@ -73,6 +73,7 @@ export default {
   },
   mounted: function() {
     this.loadCategorys()
+    this.amplitude.getInstance().logEvent('Viewed Category admin')
   },
   methods: {
     loadCategorys() {

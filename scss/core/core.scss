@@ -3,19 +3,27 @@
 @import 'index';
 
 // Components
-@import 'header';
-@import 'footer';
-@import 'search';
-@import 'tcard';
-@import 'container';
+@import 'base/header';
+@import 'base/footer';
+@import 'base/search';
+@import 'base/tcard';
+@import 'base/container';
 
 // Pages
 @import 'home';
-@import 'blog-list';
-@import 'blog';
-@import 'tools';
-@import 'ip';
-@import 'json';
+@import 'blog/blog-list';
+@import 'blog/blog';
+@import 'tool/tools';
+@import 'tool/ip';
+@import 'tool/json';
+
+// chat
+@import 'chat/card';
+@import 'chat/chat';
+@import 'chat/list';
+@import 'chat/message';
+@import 'chat/text';
+@import 'chat/friend_info';
 
 // user
 @import 'user';

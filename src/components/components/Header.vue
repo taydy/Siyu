@@ -140,10 +140,9 @@ export default {
   },
   watch: {
     needLogin: function(newValue, oldValue) {
-      console.log(newValue)
       if (newValue && !this.loginDialogVisible) {
-        this.clearInput()
-        this.loginDialogVisible = true
+        this.setNeedLogin(false)
+        this.popUpDialog()
       }
     }
   },
@@ -201,6 +200,7 @@ export default {
         this.setNickname(data.nickname)
         this.setMotto(data.motto)
         this.setNeedLogin(false)
+        this.amplitude.getInstance().setUserId(data.id)
       })
     },
     login() {
@@ -220,6 +220,7 @@ export default {
         size: 60
       })
       // login
+      this.amplitude.getInstance().logEvent('Login in')
       authApi
         .login(this.email, this.password)
         .then(response => {
@@ -263,6 +264,7 @@ export default {
         target: document.getElementById('signup-input'),
         size: 60
       })
+      this.amplitude.getInstance().logEvent('Sign up')
       // login
       authApi
         .register(this.email, this.password)
@@ -276,6 +278,7 @@ export default {
         })
     },
     logout() {
+      this.amplitude.getInstance().logEvent('Logout')
       localStorage.clear()
       this.$router.go({ name: 'Home' })
     }

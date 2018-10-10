@@ -1,0 +1,84 @@
+.chat-list {
+  
+  .chat-card-footer {
+    padding: 10px 10px;
+    height: 50px;
+    background-color: #F0F0F0;
+    border-bottom: 1px solid #F0F0FF;
+
+    .chat-search {
+      padding: 0 10px;
+      width: 100%;
+      font-size: 12px;
+      color: #292c33;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #F0F0F0;
+      border-radius: 4px;
+      outline: none;
+      background-color: #cccccc;
+    }
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      list-style: none;
+      padding: 12px 15px;
+      border-bottom: 1px solid #F0F0F0;
+      cursor: pointer;
+      transition: background-color 0.1s;
+
+      &:hover {
+        background-color: #cccccc;
+      }
+
+      &.active {
+        background-color: #cccccc;
+      }
+
+      .chat-avatar,
+      .chat-name {
+        vertical-align: middle;
+      }
+
+      .chat-avatar {
+        border-radius: 2px;
+      }
+
+      .chat-name {
+        display: inline-block;
+        margin: 0 0 0 15px;
+      }
+    }
+  }
+
+  .friend-list {
+    padding: 10px;
+    margin-top: 5px;
+
+    .custom-tree-node {
+      width: 100%;
+
+      .online {
+        color: #CC3333;
+      }
+
+      .custom-tree-node-number {
+        float: right;
+      }
+
+      .status-badge {
+        float: right;
+        margin-right: 20px;
+      }
+      .online-badge {
+        color: #CC3333;
+      }
+    }
+  }
+
+
+}

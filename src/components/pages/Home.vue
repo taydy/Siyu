@@ -140,6 +140,9 @@ export default {
       transition: 'transition: 500ms cubic-bezier(0.03, 0.98, 0.52, 0.99);'
     }
   },
+  mounted: function() {
+    this.amplitude.getInstance().logEvent('Viewed Home Page')
+  },
   methods: {
     mouseover(event) {
       this.isIn = true

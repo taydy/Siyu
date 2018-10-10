@@ -1,7 +1,7 @@
 <template>
   <div id="blogs-home" v-scroll="handleScroll">
     <div class="blogs-main">
-      <el-row v-show="articles.length === 0" style="margin-top:100px;">
+      <el-row v-show="articles.length === 0 && loadFinish" style="margin-top:100px;">
         <el-col :span="10" :offset="7">
           <img class="empty" src="@/assets/svg/start_bloging.svg">
         </el-col>
@@ -84,7 +84,8 @@ export default {
       noMore: false,
       isLoadingData: false,
       full_loading: '',
-      search: ''
+      search: '',
+      loadFinish: false
     }
   },
   directives: {
@@ -111,9 +112,11 @@ export default {
     })
     this.getCommonArticles(loading)
     this.getCommonLabels(loading)
+    this.amplitude.getInstance().logEvent('Viewed Personal Blog List Page')
   },
   methods: {
     searchArticle() {
+      this.amplitude.getInstance().logEvent('Searched Personal Blog')
       const loading = this.yoyaLoading({
         lock: true,
         background: 'white',
@@ -137,6 +140,9 @@ export default {
           page: this.page
         })
         .then(response => {
+          if (loading) {
+            loading.close()
+          }
           let data = response.data
           data.datas.forEach(article => {
             if (this.page === 1) {
@@ -159,9 +165,6 @@ export default {
               views: Math.ceil(Math.random() * 10000)
             })
           })
-          if (loading) {
-            loading.close()
-          }
           if (data.totalPage === data.currentPage) {
             this.noMore = true
           } else {
@@ -181,6 +184,7 @@ export default {
       this.getCommonArticles()
     },
     getCommonArticles(loading) {
+      this.amplitude.getInstance().logEvent('Searched Personal Blog')
       if (this.isLoadingData) {
         return
       }
@@ -191,6 +195,7 @@ export default {
           page: this.page
         })
         .then(response => {
+          this.loadFinish = true
           let data = response.data
           data.datas.forEach(article => {
             if (this.page === 1) {

@@ -98,9 +98,11 @@ export default {
     })
     this.getCommonArticles(loading)
     this.getCommonLabels(loading)
+    this.amplitude.getInstance().logEvent('Viewed Blog List Page')
   },
   methods: {
     searchArticle() {
+      this.amplitude.getInstance().logEvent('Searched Blog')
       const loading = this.yoyaLoading({
         lock: true,
         background: 'white',
@@ -119,6 +121,9 @@ export default {
       }
       this.isLoadingData = true
       articleApi.searchCommonArticle(this.search, this.page).then(response => {
+        if (loading) {
+          loading.close()
+        }
         let data = response.data
         data.datas.forEach(article => {
           if (this.page === 1) {
@@ -138,9 +143,6 @@ export default {
             views: Math.ceil(Math.random() * 10000)
           })
         })
-        if (loading) {
-          loading.close()
-        }
         if (data.totalPage === data.currentPage) {
           this.noMore = true
         } else {
@@ -160,6 +162,7 @@ export default {
       this.getCommonArticles()
     },
     getCommonArticles(loading) {
+      this.amplitude.getInstance().logEvent('Searched Blog')
       if (this.isLoadingData) {
         return
       }
@@ -215,10 +218,13 @@ export default {
       if (this.$route.path !== '/blogs') {
         return false
       }
-      if (
-        document.documentElement.scrollTop + window.innerHeight >=
-        document.body.clientHeight
-      ) {
+      let scrollTop = 0
+      if (document.documentElement && document.documentElement.scrollTop) {
+        scrollTop = document.documentElement.scrollTop
+      } else if (document.body) {
+        scrollTop = document.body.scrollTop
+      }
+      if (scrollTop + window.innerHeight >= document.body.clientHeight) {
         if (this.noMore || this.isLoadingData) {
           return
         }

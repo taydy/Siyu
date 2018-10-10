@@ -8,10 +8,10 @@ export default {
       name: 'Blog',
       url: '/blogs'
     },
-    // {
-    //   name: 'Movie',
-    //   url: '/movies'
-    // },
+    {
+      name: 'Chat',
+      url: '/chat'
+    },
     {
       name: 'Tool',
       url: '/tools'
@@ -20,5 +20,19 @@ export default {
     //   name: 'About',
     //   url: '/about'
     // }
+  ],
+  chatNav: [
+    {
+      id: 1,
+      name: 'chat',
+      default: '/static/img/chat/chat.svg',
+      active: '/static/img/chat/chat_active.svg'
+    },
+    {
+      id: 2,
+      name: 'people',
+      default: '/static/img/chat/people.svg',
+      active: '/static/img/chat/people_active.svg'
+    }
   ]
 }

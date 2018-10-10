@@ -105,6 +105,7 @@ export default {
   mounted: function() {
     this.loadArticles()
     this.loadCategorys()
+    this.amplitude.getInstance().logEvent('Viewed Draftbox admin')
   },
   methods: {
     searchArticles() {

@@ -115,6 +115,7 @@ export default {
         })
     },
     updateAvatar(user) {
+      this.amplitude.getInstance().logEvent('Updated User Avatar')
       userApi
         .updateUserInfo(user, localStorage.userId)
         .then(response => {
@@ -139,6 +140,7 @@ export default {
         background: 'white',
         target: document.getElementById('user-info')
       })
+      this.amplitude.getInstance().logEvent('Updated User info')
       userApi
         .updateUserInfo(this.userInfo, localStorage.userId)
         .then(response => {
