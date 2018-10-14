@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { authApi, userApi } from '@/api/api'
+import { authApi, userApi, clientApi } from '@/api/api'
 import { mapActions, mapState } from 'vuex'
 import { DEFAULT_WEB_ROOT } from '@/assets/js/const'
 export default {
@@ -117,7 +117,8 @@ export default {
       passwordRepeat: '',
       loginDialogVisible: false,
       action: 'Login In',
-      errorMsg: ''
+      errorMsg: '',
+      renewInterval: ''
     }
   },
   computed: {
@@ -146,6 +147,11 @@ export default {
       }
     }
   },
+  mounted: function() {
+    if (localStorage.token) {
+      this.clientRenew()
+    }
+  },
   methods: {
     ...mapActions('auth', [
       'setUsername',
@@ -153,7 +159,8 @@ export default {
       'setUserId',
       'setNickname',
       'setMotto',
-      'setNeedLogin'
+      'setNeedLogin',
+      'setUserNumber'
     ]),
     switchDialog() {
       this.action = this.action === 'Login In' ? 'Sign Up' : 'Login In'
@@ -199,6 +206,7 @@ export default {
         this.setUserId(data.id)
         this.setNickname(data.nickname)
         this.setMotto(data.motto)
+        this.setUserNumber(data.userNumber)
         this.setNeedLogin(false)
         this.amplitude.getInstance().setUserId(data.id)
       })
@@ -234,11 +242,11 @@ export default {
             loading.close()
             this.loginDialogVisible = false
             this.getUserInfo()
+            this.clientRenew()
           }
         })
         .catch(error => {
           loading.close()
-
           this.showDialogErrorMsg(error.message)
         })
     },
@@ -265,7 +273,7 @@ export default {
         size: 60
       })
       this.amplitude.getInstance().logEvent('Sign up')
-      // login
+      // register
       authApi
         .register(this.email, this.password)
         .then(response => {
@@ -279,8 +287,20 @@ export default {
     },
     logout() {
       this.amplitude.getInstance().logEvent('Logout')
-      localStorage.clear()
-      this.$router.go({ name: 'Home' })
+      clientApi.clientCancel().then(response => {
+        localStorage.clear()
+        this.$router.go({ name: 'Home' })
+      })
+    },
+    clientRenew() {
+      clientApi.clientRenew()
+      if (!this.renewInterval) {
+        this.renewInterval = setInterval(() => {
+          clientApi.clientRenew().then(response => {
+            console.log('renew success')
+          })
+        }, 30000)
+      }
     }
   }
 }

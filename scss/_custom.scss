@@ -78,6 +78,15 @@ a {
   width: 100%
 }
 
+.el-tree-node__content {
+  padding: 5px 0;
+  height: 100%;
+}
+
+.el-tree-node__expand-icon.is-leaf {
+  width: 5px;
+}
+
 //effect input
 .effect-input {
   width: 80%;
@@ -98,7 +107,7 @@ a {
   padding: 0 6px;
   font-size: 12px;
   text-align: center;
-  background-color: #FF5722;
+  background-color: #ff9600;
   color: #fff;
   border-radius: 5px;
   height: 18px;
@@ -160,6 +169,12 @@ a {
 .pagination {
   text-align: center;
   margin: 20px auto;
+}
+
+.fix-width {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/

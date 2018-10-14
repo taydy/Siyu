@@ -1,31 +1,12 @@
-const now = new Date()
 const state = {
-  currentMenu: 1,
+  currentMenu: 2,
   currentTreeNode: {},
-  sessions: [
-    {
-      id: 1,
-      name: '示例介绍',
-      img: '/static/img/chat/2.png',
-      messages: [{
-        id: '1',
-        content: 'Hello，这是一个基于Vue + Vuex + Webpack构建的简单chat示例，聊天记录保存在localStorge, 有什么问题可以通过Github Issue问我。',
-        date: now
-      }, {
-        id: '2',
-        content: '项目地址: https://github.com/coffcer/vue-chat',
-        date: now
-      }]
-    },
-    {
-      id: 2,
-      name: 'webpack',
-      img: '/static/img/chat/3.jpg',
-      messages: []
-    }
-  ],
-  currentSessionId: 1,
-  filterKey: ''
+  sessions: [],
+  currentSessionId: 0,
+  filterKey: '',
+  refreshType: '',
+  myNewMessage: {},
+  groupFriends: []
 }
 
 const getters = {
@@ -33,13 +14,19 @@ const getters = {
   currentSessionId: state => state.currentSessionId,
   filterKey: state => state.filterKey,
   currentMenu: state => state.currentMenu,
-  currentFriend: state => state.currentFriend
+  currentFriend: state => state.currentFriend,
+  refreshType: state => state.refreshType,
+  myNewMessage: state => state.myNewMessage,
+  groupFriends: state => state.groupFriends
 }
 
 const mutations = {
-  INIT_DATA(state) {
-    let data = localStorage.getItem('chat-session')
+  INIT_DATA({
+    sessions
+  }, userNumber) {
+    let data = localStorage.getItem('chat-session-' + userNumber)
     if (data) {
+      console.log(JSON.parse(data))
       state.sessions = JSON.parse(data)
     }
   },
@@ -48,16 +35,38 @@ const mutations = {
     sessions,
     currentSessionId
   }, message) {
-    let session = sessions.find(item => item.id === currentSessionId)
+    let session = sessions.find(item => item.roomId === currentSessionId)
     session.messages.push(message)
+    state.myNewMessage = message
   },
-  UPDATE_MESSAGE_STATUS({
-    sessions,
-    currentSessionId
-  }, tempId, status) {
-    let session = sessions.find(item => item.id === currentSessionId)
-    let message = session.messages.find(msg => msg.tempId === tempId)
-    message.status = status
+  RECEIVE_MESSAGE({
+    sessions
+  }, message) {
+    let session = sessions.find(item => item.roomId === message.roomId)
+    if (!session) {
+      for (var group of state.groupFriends) {
+        for (var user of group.children) {
+          if (user.info.userNumber === message.sendFrom) {
+            session = {
+              roomId: message.roomId,
+              name: user.info.nickname,
+              image: user.info.avatar,
+              messages: []
+            }
+            break
+          }
+        }
+      }
+      state.sessions.unshift(session)
+    }
+    if (message.self) {
+      var oldMessage = session.messages.find(msg => msg.msgId === message.msgId)
+      if (oldMessage) {
+        oldMessage.status = message.status
+        return
+      }
+    }
+    session.messages.push(message)
   },
   // 选择会话
   SELECT_SESSION(state, id) {
@@ -77,24 +86,25 @@ const mutations = {
   },
   SELECT_TREE_NODE(state, node) {
     state.currentTreeNode = node
+  },
+  SET_REFRESH_TYPE(state, type) {
+    state.refreshType = type
+  },
+  SET_GROUP_FRIENDS(state, groupFriends) {
+    state.groupFriends = groupFriends
   }
 }
 
 const actions = {
   initData({
     commit
-  }) {
-    commit('INIT_DATA')
+  }, userNumber) {
+    commit('INIT_DATA', userNumber)
   },
   sendMessage({
     commit
   }, message) {
     commit('SEND_MESSAGE', message)
-  },
-  updateMessageStatus({
-    commit
-  }, tempId, status) {
-    commit('UPDATE_MESSAGE_STATUS', tempId, status)
   },
   selectSession({
     commit
@@ -120,6 +130,21 @@ const actions = {
     commit
   }, node) {
     commit('SELECT_TREE_NODE', node)
+  },
+  setRefreshType({
+    commit
+  }, type) {
+    commit('SET_REFRESH_TYPE', type)
+  },
+  setGroupFriends({
+    commit
+  }, groupFriends) {
+    commit('SET_GROUP_FRIENDS', groupFriends)
+  },
+  receiveMessage({
+    commit
+  }, message) {
+    commit('RECEIVE_MESSAGE', message)
   }
 }
 

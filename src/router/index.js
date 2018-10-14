@@ -186,6 +186,7 @@ router.afterEach((to, from) => {
       store.dispatch('auth/setAvatar', data.avatar)
       store.dispatch('auth/setUserId', data.id)
       store.dispatch('auth/setMotto', data.motto)
+      store.dispatch('auth/setUserNumber', data.userNumber)
       amplitude.getInstance().setUserId(data.id)
       console.log(amplitude)
     })
@@ -196,6 +197,7 @@ router.afterEach((to, from) => {
     store.dispatch('auth/setAvatar', '')
     store.dispatch('auth/setUserId', '')
     store.dispatch('auth/setMotto', '')
+    store.dispatch('auth/setUserNumber', '')
   }
 })
 

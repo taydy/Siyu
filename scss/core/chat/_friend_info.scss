@@ -1,32 +1,48 @@
 .friend-info {
-    text-align: center;
-    margin: 100px auto;
+  text-align: center;
+  margin: 100px auto;
 
-    .friend-info-header {
-        .dividing-line {
-            margin: 20px 0;
-            border-bottom: 1px solid #C0C4CC;
-        }
-
-        .info-nickname,
-        .info-motto {
-            text-align: left;
-        }
-        .info-nickname {
-            font-size: 30px;
-            margin: 10px 0 15px;
-        }
-        .info-motto {
-            font-size: 16px;
-            opacity: .6;
-        }
-        img {
-            float: right;
-            border-radius: 5px;
-        }
+  .friend-info-header {
+    .dividing-line {
+      margin: 20px 0;
+      border-bottom: 1px solid #C0C4CC;
     }
 
-    .info-footer {
-        margin-top: 50px;
+    .info-nickname,
+    .info-motto {
+      text-align: left;
     }
+
+    .info-nickname {
+      font-size: 30px;
+      margin: 10px 0 15px;
+    }
+
+    .info-motto {
+      font-size: 16px;
+      opacity: .6;
+
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
+    }
+
+    img {
+      float: right;
+      border-radius: 5px;
+    }
+  }
+
+  .info-footer {
+    margin-top: 50px;
+
+    .el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before {
+        content: ''
+    }
+  }
 }

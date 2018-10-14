@@ -5,6 +5,7 @@ const state = {
   avatar: '',
   nickname: '',
   motto: '',
+  userNumber: '',
   needLogin: false
 }
 
@@ -15,7 +16,8 @@ const getters = {
   userId: state => state.userId,
   nickname: state => state.nickname,
   motto: state => state.motto,
-  needLogin: state => state.needLogin
+  needLogin: state => state.needLogin,
+  userNumber: state => state.userNumber
 }
 
 // mutations
@@ -37,6 +39,9 @@ const mutations = {
   },
   needLogin(state, needLogin) {
     state.needLogin = needLogin
+  },
+  userNumber(state, userNumber) {
+    state.userNumber = userNumber
   }
 }
 
@@ -71,6 +76,11 @@ const actions = {
     commit
   }, needLogin) {
     commit('needLogin', needLogin)
+  },
+  setUserNumber({
+    commit
+  }, userNumber) {
+    commit('userNumber', userNumber)
   }
 }
 
