@@ -6,7 +6,10 @@ const state = {
   filterKey: '',
   refreshType: '',
   myNewMessage: {},
-  groupFriends: []
+  groupFriends: [],
+  userAvatar: {},
+  currentRoom: {},
+  playSound: false
 }
 
 const getters = {
@@ -17,7 +20,10 @@ const getters = {
   currentFriend: state => state.currentFriend,
   refreshType: state => state.refreshType,
   myNewMessage: state => state.myNewMessage,
-  groupFriends: state => state.groupFriends
+  groupFriends: state => state.groupFriends,
+  userAvatar: state => state.userAvatar,
+  currentRoom: state => state.currentRoom,
+  playSound: state => state.playSound
 }
 
 const mutations = {
@@ -26,7 +32,6 @@ const mutations = {
   }, userNumber) {
     let data = localStorage.getItem('chat-session-' + userNumber)
     if (data) {
-      console.log(JSON.parse(data))
       state.sessions = JSON.parse(data)
     }
   },
@@ -36,8 +41,15 @@ const mutations = {
     currentSessionId
   }, message) {
     let session = sessions.find(item => item.roomId === currentSessionId)
+    state.playSound = true
     session.messages.push(message)
     state.myNewMessage = message
+  },
+  LOAD_MESSAGE({
+    sessions
+  }, message) {
+    let session = sessions.find(item => item.roomId === message.roomId)
+    session.messages.unshift(message)
   },
   RECEIVE_MESSAGE({
     sessions
@@ -58,23 +70,38 @@ const mutations = {
         }
       }
       state.sessions.unshift(session)
+      state.currentSessionId = message.roomId
     }
     if (message.self) {
+      if (state.currentSessionId === message.roomId) {
+        session.unRead = ''
+      }
       var oldMessage = session.messages.find(msg => msg.msgId === message.msgId)
       if (oldMessage) {
         oldMessage.status = message.status
+        oldMessage.content = message.content
         return
       }
+    } else {
+      session.unRead = session.unRead ? session.unRead + 1 : 1
+      state.playSound = true
     }
     session.messages.push(message)
   },
   // 选择会话
   SELECT_SESSION(state, id) {
     state.currentSessionId = id
+    let session = state.sessions.find(item => item.roomId === id)
+    session.unRead = ''
   },
   // 新增会话
   ADD_SESSION(state, session) {
-    state.sessions.unshift(session)
+    let temp = state.sessions.find(item => item.roomId === session.roomId)
+    if (!temp) {
+      state.sessions.unshift(session)
+    } else {
+      temp.unRead = session.unRead
+    }
   },
   // 搜索
   SET_FILTER_KEY(state, value) {
@@ -92,6 +119,33 @@ const mutations = {
   },
   SET_GROUP_FRIENDS(state, groupFriends) {
     state.groupFriends = groupFriends
+    groupFriends.forEach(group => {
+      group.children.forEach(user => {
+        state.userAvatar[user.id] = user.info.avatar
+      })
+    })
+  },
+  UPDATE_ROOM_INFO({sessions}, room) {
+    state.currentRoom = room
+    console.log(state.currentRoom)
+    let session = sessions.find(item => item.roomId === room.roomId)
+    if (room.roomName) {
+      session.name = room.roomName
+    }
+    if (room.image) {
+      session.image = room.image
+    }
+    session.total = room.total
+  },
+  ADD_USER_AVATAR({
+    userAvatar
+  }, data) {
+    userAvatar[data.userNumber] = data.avatar
+  },
+  UPDATE_PLAY_SOUND({
+    playSound
+  }, flag) {
+    state.playSound = flag
   }
 }
 
@@ -141,10 +195,30 @@ const actions = {
   }, groupFriends) {
     commit('SET_GROUP_FRIENDS', groupFriends)
   },
+  loadMessage({
+    commit
+  }, message) {
+    commit('LOAD_MESSAGE', message)
+  },
   receiveMessage({
     commit
   }, message) {
     commit('RECEIVE_MESSAGE', message)
+  },
+  updateRoomInfo({
+    commit
+  }, room) {
+    commit('UPDATE_ROOM_INFO', room)
+  },
+  addUserAvatar({
+    commit
+  }, data) {
+    commit('ADD_USER_AVATAR', data)
+  },
+  updatePlaySound({
+    commit
+  }, flag) {
+    commit('UPDATE_PLAY_SOUND', flag)
   }
 }
 

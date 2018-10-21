@@ -1,6 +1,6 @@
 <template>
-  <div class="friend-info" v-if="currentTreeNode.id">
-    <div class="friend-info-header">
+  <div class="friend-info" v-if="currentTreeNode.id || currentTreeNode.roomId">
+    <div class="friend-info-header" v-if="currentTreeNode.id">
       <el-row>
         <el-col :span="12" :offset="4">
           <div class="info-nickname fix-width">
@@ -20,9 +20,24 @@
         </el-col>
       </el-row>
     </div>
+    <div class="room-chat-info" v-if="currentTreeNode.roomId">
+      <el-row>
+        <el-col :span="6" :offset="9">
+          <img width="120" height="120" :src="'https://yoyadoc.com/' + currentTreeNode.image">
+        </el-col>
+      </el-row>
+      <el-row class="room-name">
+        <el-col :span="14" :offset="5">
+          <span>{{ currentTreeNode.roomName }}</span>
+        </el-col>
+      </el-row>
+    </div>
     <div class="info-footer" v-if="currentTreeNode.type === 'friend'">
       <el-button type="success" size="middle" @click="startSession(currentTreeNode)">发送消息</el-button>
       <el-button type="danger" size="middle" @click="deleteFriend(currentTreeNode)">删除好友</el-button>
+    </div>
+    <div class="info-footer" v-if="currentTreeNode.type === 'room_chat'">
+      <el-button type="success" size="middle" @click="startRoomSession(currentTreeNode)">进入群聊</el-button>
     </div>
     <div class="info-footer" v-else-if="currentTreeNode.type === 'users'">
       <el-button type="success" size="middle" @click="startSession(currentTreeNode)" v-if="currentTreeNode.info.roomId">发送消息</el-button>
@@ -148,8 +163,9 @@ export default {
     },
     startSession(currentTreeNode) {
       if (
-        this.sessions.filter(session => session.id === currentTreeNode.id)
-          .length === 0
+        this.sessions.filter(
+          session => session.roomId === currentTreeNode.info.roomId
+        ).length === 0
       ) {
         this.addSession({
           roomId: currentTreeNode.info.roomId,
@@ -159,6 +175,22 @@ export default {
         })
       }
       this.selectSession(currentTreeNode.info.roomId)
+      this.selectMenu(1)
+    },
+    startRoomSession(currentTreeNode) {
+      if (
+        this.sessions.filter(
+          session => session.roomId === currentTreeNode.roomId
+        ).length === 0
+      ) {
+        this.addSession({
+          roomId: currentTreeNode.roomId,
+          name: currentTreeNode.roomName,
+          image: currentTreeNode.image,
+          messages: []
+        })
+      }
+      this.selectSession(currentTreeNode.roomId)
       this.selectMenu(1)
     },
     deleteFriend(currentTreeNode) {

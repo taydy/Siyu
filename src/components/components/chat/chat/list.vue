@@ -5,7 +5,10 @@
     </div>
     <ul v-if="sessions.length !== 0">
       <li v-for="item in sessions" :key="item.roomId" :class="{ 'active': item.roomId === currentSessionId }" @click="selectSession(item.roomId)">
-        <img class="chat-avatar" width="30" height="30" :src="'https://yoyadoc.com/' + item.image">
+        <el-badge :value="item.unRead" :max="99" class="item">
+          <img class="chat-avatar" width="40" height="40" style="border: 1px solid lightgray;" :src="'https://yoyadoc.com/' + item.image">
+        </el-badge>
+
         <p class="chat-name">{{item.name}}</p>
       </li>
     </ul>
@@ -17,7 +20,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-
 export default {
   computed: {
     ...mapState({
@@ -28,9 +30,6 @@ export default {
       },
       currentSessionId: state => state.chat.currentSessionId
     })
-  },
-  mounted: function() {
-    console.log(this.sessions)
   },
   methods: {
     ...mapActions('chat', ['selectSession', 'search']),

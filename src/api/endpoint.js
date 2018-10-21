@@ -54,3 +54,15 @@ export const GET_AUTH_FRIEND_REQUEST_MY = '/api/auth/chat/friend-request/my'
 export const GET_AUTH_FRIEND_REQUEST_OTHER = '/api/auth/chat/friend-request/other'
 export const PUT_AUTH_ACCEPT_FRIEND_REQUEST = '/api/auth/chat/friend-request/{id}/accept'
 export const PUT_AUTH_REJECT_FRIEND_REQUEST = '/api/auth/chat/friend-request/{id}/reject'
+/**
+ * room.
+ */
+export const GET_AUTH_ROOM_USERS = '/api/auth/chat/room/{room_id}/users'
+export const GET_AUTH_ROOM_BY_ID = '/api/auth/chat/rooms/{room_id}'
+export const PUT_AUTH_ROOM = '/api/auth/chat/rooms/{room_id}'
+export const GET_AUTH_ROOM_CHAT = '/api/auth/chat/rooms/chats'
+export const GET_AUTH_ROOM = '/api/auth/chat/rooms'
+/**
+ * message.
+ */
+export const GET_MESSAGE = '/api/auth/chat/messages/{room_id}/{last_time}'

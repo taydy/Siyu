@@ -15,6 +15,8 @@ import moment from 'vue-moment'
 import CommonUtil from '@/assets/js/common'
 import underscore from 'underscore'
 import amplitude from 'amplitude-js'
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
 
 import axios from './http'
 import App from './App'
@@ -36,6 +38,8 @@ amplitude.getInstance().init('b9a94813e48465833715f7e380dd0c62')
 Vue.prototype.amplitude = amplitude
 Vue.prototype.commonUtil = CommonUtil
 Vue.prototype.underscore = underscore
+
+Vue.use(Viewer)
 
 /* eslint-disable no-new */
 new Vue({

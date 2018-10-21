@@ -90,12 +90,29 @@
             </span>
           </el-tree>
         </el-collapse-item>
-        <el-collapse-item title="我的群聊" name="3">
-          <ul>
-            <li v-for="item in rooms" :key="item.roomId">
-              <p class="chat-name">{{item.roomName}}</p>
-            </li>
-          </ul>
+        <el-collapse-item name="3">
+          <template slot="title">
+            我的群聊
+          </template>
+          <el-tree :data="roomChats" node-key="roomId" empty-text="暂无群聊" @node-click="nodeClick">
+            <span class="custom-tree-node" slot-scope="{ node, data }">
+              <div class="tree-leaf">
+                <el-row :gutter="10">
+                  <el-col :span="4">
+                    <img style="border-radius:0;border:1px solid lightgray;" class="tree-leaf-user-avatar room-chat" :src="'https://yoyadoc.com/' + data.image">
+                  </el-col>
+                  <el-col :span="20">
+                    <el-row>
+                      <el-col :span="18" class="fix-width room-chat-name">
+                        <span>{{ data.roomName }}</span>
+                        <span class="total">({{ data.total }})</span>
+                      </el-col>
+                    </el-row>
+                  </el-col>
+                </el-row>
+              </div>
+            </span>
+          </el-tree>
         </el-collapse-item>
         <el-collapse-item title="我的好友" name="4">
           <el-input prefix-icon="el-icon-search" placeholder="过滤好友" v-model="filterText" size="mini" style="margin-bottom:10px;">
@@ -202,7 +219,8 @@ export default {
             trigger: 'blur'
           }
         ]
-      }
+      },
+      roomChats: []
     }
   },
   components: {
@@ -223,6 +241,7 @@ export default {
   mounted: function() {
     this.refreshFriends()
     this.getFriendRequest()
+    this.refreshRoomChats()
   },
   watch: {
     filterText(val) {
@@ -347,6 +366,7 @@ export default {
       if (data.type === 'friend' && node.level === 1) {
         return
       }
+      console.log(data)
       this.selectTreeNode(data)
     },
     searchUsers() {
@@ -497,6 +517,15 @@ export default {
           console.log('error submit!!')
           return false
         }
+      })
+    },
+    refreshRoomChats() {
+      chatApi.getRoomChats().then(response => {
+        let temp = response.data
+        temp.forEach(chat => {
+          chat.type = 'room_chat'
+        })
+        this.roomChats = temp
       })
     }
   }

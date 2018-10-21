@@ -5,5 +5,5 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   PORT: 8000,
-  API_ROOT_PATH: '"http://localhost:9000"'
+  API_ROOT_PATH: '"https://api.yoyadoc.com"'
 })

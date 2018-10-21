@@ -1,0 +1,52 @@
+.room-info {
+    position: absolute;
+    border: 1px solid #C0C4CC;
+    height: calc(100% - 50px);
+    right: 0;
+    // z-index: 1000;
+    background-color: #F8F8F9;
+    opacity: .95;
+    transition-property: all;
+    transition-duration: .6s;
+
+    .room-main-info {
+        margin-top: 10px;
+        border-bottom: 1px solid lightgray;
+
+        .el-input__inner {
+            border: 0;
+            padding: 0;
+            background-color: #F8F8F9;
+        }
+    }
+
+    .room-uers {
+        margin-top: 20px;
+    }
+
+    .setting {
+        margin: 10px 11px;
+        cursor: pointer;
+    }
+
+    .el-tree {
+        background-color: #F8F8F9;
+    }
+
+    .tree-leaf-user-avatar {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .el-dialog {
+        border-radius: 4px;
+    }
+}
+
+.open {
+    width: 250px;
+}
+
+.close {
+    width: 0px;
+}
