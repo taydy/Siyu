@@ -1,22 +1,31 @@
 <template>
   <div id="blog">
     <el-row>
-      <el-col :span="16" :offset="4">
+      <el-col :span="5">
+        <div class="directory" v-show="!commonUtil.isEmpty(directory)">
+          <h2>目录</h2>
+          <div class="nav" v-html="directory">
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="16" :offset="7">
         <div class="blog-info" id="blog-info">
           <h1>{{article.title}}</h1>
+          <i class="fa fa-user">
+            <a class="category">{{article.ownName}}</a>
+          </i>
+          <i class="fa fa-tags">
+            <a class="category">{{article.category}}</a>
+          </i>
+          <i class="fa fa-calendar">
+            <a class="category">{{article.createdTime | moment("MMMM Do YYYY, h:mm:ss a")}}</a>
+          </i>
           <div class="page">
             <div class="blog-content markdown-body" v-html="markdownHtml">
             </div>
           </div>
         </div>
         <div id="disqus_thread"></div>
-      </el-col>
-      <el-col :span="4">
-        <div class="directory" v-show="!commonUtil.isEmpty(directory)">
-          <a>目录</a>
-          <div class="nav" v-html="directory">
-          </div>
-        </div>
       </el-col>
     </el-row>
   </div>
@@ -39,7 +48,7 @@ export default {
     const loading = this.yoyaLoading({
       lock: true,
       background: 'white',
-      target: document.getElementById('blog-info')
+      target: document.getElementById('blog')
     })
     this.id = this.$route.params.id
     this.loadArticle(loading)
@@ -57,7 +66,7 @@ export default {
           .data()
           .markdownIt.use(require('markdown-it-highlightjs'))
           .use(require('markdown-it-katex-external'))
-          .render('@[toc](d) \n' + this.article.content)
+          .render('@[toc] \n' + this.article.content)
         var objE = document.createElement('div')
         objE.innerHTML = html
         let nodes = objE.childNodes
@@ -104,7 +113,7 @@ export default {
 @import '../../../../scss/highlight';
 </style>
 
-<style>
+<style lang="scss" scoped>
 #disqus_thread {
   margin: 40px auto;
 }

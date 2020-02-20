@@ -1,29 +1,54 @@
 #blog {
+  min-height: 45vw;
+
   .blog-info {
     // min-height: 800px;
+    .category {
+      padding: 0 10px;
+      font-weight: 500;
+    }
   }
   .directory {
     position: fixed;
-    top: 200px;
-    height: 500px;
+    top: 120px;
+    // height: 55vw;
+    bottom: 10px;
     text-align: center;
     line-height: 28px;
-    overflow-y: auto;
+    overflow-x: auto;
     width: 300px;
 
     .nav {
         text-align: left;
 
-        ul,
-        ol {
+        ul {
           list-style-type: none;
-          
-          li {
-            a {
-              font-weight: 400;
-              color: #3eaf7c;
-            }
-          }
+          line-height: 1.5em;
+          padding-inline-start: 20px;
+        }
+        ul li:before {
+          margin-left: -2ch;
+          position: absolute;
+          color: #6363ac;
+          content: "-";
+          font-size: 18px;
+        }
+        ol {
+          counter-reset: item;
+          list-style-type: none;
+        }
+        ol li:before {
+          content: counter(item) ". ";
+          counter-increment: item;
+          margin-left: -2ch;
+          position: absolute;
+          color: #6363ac;
+        }
+
+        ul a {
+          color: #6363ac;
+          font-weight: 400;
+          text-decoration: dotted;
         }
     }
   }
